@@ -3,23 +3,27 @@ def main():
     # TODO: Step 2 - Create a complex data structure
     about_me = {'full_name' : 'Jashanjot Kaur',
     'student_id': 777200411 ,
-    'pizza_topplings' : [
+    'pizza_toppings' : [
         'PINEAPPLE',
         'BACON',
         'HAM'
     ],
     'movies' : [
-        {'title' : 'Jawan',
-        'genre' : 'Action'},
-        {'title' : 'Hackers',
-        'genre' : 'Nerd Action' }
+        {'title' : 'Pathan',
+        'genre' : 'Romantic'},
+        {'title' : 'Phir Here Pheri',
+        'genre' : 'Comedy' }
 
     ]}
 
     # TODO: Step 3 - Add another movie to the data structure
     about_me['movies'].append({'title' : 'Star Wars',
                                'genre' : 'Sci-Fi'})
+    add_pizza_toppings(about_me, ["TOMATOES", "PANEER"])
     print_student_name_and_id(about_me)
+    print_pizza_toppings(about_me)
+    print_movie_genres(about_me)
+    print_movie_titles(about_me["movies"])
     return    
 
 # TODO: Step 4 - Function that prints student name and ID	
@@ -33,20 +37,29 @@ def print_student_name_and_id(data_struct):
     print(f"My student ID is {student_id}.")
     return
     
-# TODO: Step 5 - Function that adds pizza toppings to data structure
+# TODO: Step 5 -  A Function that puts pizza toppings into a list
 def add_pizza_toppings(about_me, toppings):
+    about_me['pizza_toppings'].extend(toppings)
     return
 
-# TODO: Step 6 - Function that prints bullet list of pizza toppings
+# TODO: Step 6 - A Function that prints bullet list of pizza toppings
 def print_pizza_toppings(about_me):
+    print("My favourite pizza toppings are:")
+    [print(f"- {topping}") for topping in about_me["pizza_toppings"]]
+    print()
+    
     return
 
 # TODO: Step 7 - Function that prints comma-separated list of movie genres
 def print_movie_genres(about_me):
-    return 
+    genres = [movie["genre"] for movie in about_me["movies"]]
+    print(f"I like to watch {', '.join(genres)} movies.\n")
+    return
 
 # TODO: Step 8 - Function that prints comma-separated list of movie titles
 def print_movie_titles(movie_list):
+    titles = [movie.get('title', 'Unknown') for movie in movie_list]
+    print(f"Some of my favourite movies are {', '.join(titles)}!\n")
     return
     
 if __name__ == '__main__':
